@@ -1,0 +1,12 @@
+import json
+
+def parse_logs(path: str) -> list:
+    events = []
+    with open(path) as f:
+        for line in f:
+            try:
+                obj = json.loads(line)
+                events.append(obj)
+            except json.JSONDecodeError:
+                continue
+    return events
